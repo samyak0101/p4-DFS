@@ -66,7 +66,7 @@ Specifications:
    
    
 File contents
-- Specification
+- Initial description and understanding
     - file payloads stored in quantums of block size
     - each file block has an inode number and offset
     - The whole file system is made up of blocks. We want to make most of these data storage blocks
@@ -79,6 +79,7 @@ File contents
     - So, we use a 4k block to store the inode bitmap which will tell us whether inode number 35 for example, is allocated or not. 
     - If it is, then we skip three 4k blocks since we skip super block, inode bitmap, data bitmap, to reach the start of the inode table (12KB from start)
     - Then, if we want the 32nd inode, we go to byte number 12KB + (128 * (inode_num - 1)) = 16256
+    - More generally, do your math like this: inode = fs_img + BLOCKSIZE * (superblock->inode_region_addr + inode/32) 
     - Inode contains information about the type of file (f or d), the size, etc.
     - Each directory has 2 entries at least: the current director ( . ) and the parent directory ( .. ). 
     - Each dirctory or file name can only be 28 char string in length at max.
