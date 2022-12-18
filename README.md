@@ -18,6 +18,7 @@ Updated: 12/17/2022
     - Download the hex editor extension on vscode and look at the file system image. (gcc mkfs.c -o mkfs to compile it. Then do ./mkfs -f file to store the image in 'file'). Understand what an inode is, where it is and so on.
     - For lookup and stat, you basically need to loop through the file image to find a certain directory or file. Make this loop and print things out to see if you can read/write from/into the file system image.
 
+## Function skeletons
 
 NOTES: 
 - Specs:
@@ -133,12 +134,7 @@ Read Notes:
     - Use for loop to increment pointer and write from file into buffer - Manually null terminate buffer 
     - return 0
     
-Questions:
-- Specification
-    - if data full do we allocate file inode still (cuz it can't have data)
-    - how to do mmap sync or flush etc.
-    - in creat sometimes there are random garbage values at the dir ent location, how do i know for sure if theres a dir entry at a specific location or not?
-    
+
 Unlink notes:
 - Specification
     - removes file or dir specified by pinum; ret 0 on success -1 on failure
@@ -152,6 +148,19 @@ Unlink notes:
     - reduce parent size field and set that dirent's inum to -1
     - remove inode corresponding to directory
 
+## Tips
+- I highly recommend writing out the skeleton for yourself and understanding why you're doing what you're doing.
+- I recommend reading the tests to understand how your server will be tested.
+- Use the hex editor to the max
+- Write down questions and try to answer them (get help from TAs or Peer Mentors)
+- Test, test, test, test, test!
 
+Questions:
+- Specification
+    - if data full do we allocate file inode still (cuz it can't have data)
+    - how to do mmap sync or flush etc.
+    - in creat sometimes there are random garbage values at the dir ent location, how do i know for sure if theres a dir entry at a specific location or not?
+    
+# Compiling client:
 gcc -o client mfs.c udp.c client.c
 server 52364 file
