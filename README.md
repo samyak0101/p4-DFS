@@ -2,8 +2,25 @@
 Fall 2022 OS p4: Building a Distributed File System 
 Updated: 12/17/2022 
 
+## Getting Started:
+- Use the sample client.c and server.c to spin some communication between them. Send a hi from the client and respond with the server.
+- Understand how this communication works by examining the udp.c file. 
+- Next, go through the mkfs file and understand what a file system image is. 
+- Read the chapter on file systems to clarify your understand from the mkfs file. 
+- Kai's lecture on the project contains all starter mmap code to read in 
+- Copy this code, and attempt to read the mmapped file system image. Print out simple things like the superblock -> inode_address_region
+
+
+## Developing the project
+- Initial build
+    - Make an outline of all the mfs functions and write some print statements to see whether client calling mfs creat goes to the correct mfs function, and the same happens in the server. (client calling creat should receive a confirmation from server that it in-fact called creat
+    - Implement the Lookup and Stat functions. These are relatively short and should give you an understanding of how directory entries, inodes, and data blocks work.
+    - Download the hex editor extension on vscode and look at the file system image. (gcc mkfs.c -o mkfs to compile it. Then do ./mkfs -f file to store the image in 'file'). Understand what an inode is, where it is and so on.
+    - For lookup and stat, you basically need to loop through the file image to find a certain directory or file. Make this loop and print things out to see if you can read/write from/into the file system image.
+
 
 NOTES: 
+- Specs:
     - Use ss -ulpn to check port numbers and file descriptor of open ports
     - we are reading the whole thing into memory using mmap and flushing it to disk with msync
     - Use ./mkfs -ffs.img -d32 -i32 -v to check the layout of the file system image (need to compile mkfs before doing this obviously)
