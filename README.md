@@ -155,12 +155,12 @@ Unlink notes:
 - Write down questions and try to answer them (get help from TAs or Peer Mentors)
 - Test, test, test, test, test!
 
-Questions:
+Some questions I wrote while developing (which you should be able to answer):
 - Specification
     - if data full do we allocate file inode still (cuz it can't have data)
     - how to do mmap sync or flush etc.
     - in creat sometimes there are random garbage values at the dir ent location, how do i know for sure if theres a dir entry at a specific location or not?
     
-# Compiling client:
-gcc -o client mfs.c udp.c client.c
-server 52364 file
+    
+- gcc -o client mfs.c udp.c client.c
+- server 52364 file
